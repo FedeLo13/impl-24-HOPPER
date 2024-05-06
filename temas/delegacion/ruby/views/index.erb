@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orquesta</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #0066cc;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #instrument-list {
+            text-align: left;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Orquesta</h1>
+        <div id="instrument-list">
+            <h2>Instrumentos en la Orquesta</h2>
+            <ul id="instrument-ul">
+                <% orquesta.each do |instrumento| %>
+                    <li><%= instrumento %></li>
+                <% end %>
+            </ul>
+        </div>
+        <h2>Acciones</h2>
+        <input type="text" id="nombreInstrumento" placeholder="Nombre del instrumento">
+        <button onclick="agregarViento()">Agregar Viento</button>
+        <button onclick="agregarCuerda()">Agregar Cuerda</button>
+        <button onclick="agregarPercusion()">Agregar Percusión</button>
+        <button onclick="afinar()">Afinar</button>
+        <button onclick="tocar()">Tocar</button>
+
+        <div id = "message"></div>
+        <script>
+
+            function agregarViento() {
+                fetch('/agregar/Viento/' + document.getElementById('nombreInstrumento').value)
+                    .then(response => response.text())
+                    .then(result => {
+                            document.getElementById('message').innerHTML = result;
+                            location.reload();
+                        });
+            }
+
+            function agregarCuerda() {
+                fetch('/agregar/Cuerda/' + document.getElementById('nombreInstrumento').value)
+                    .then(response => response.text())
+                    .then(result => {
+                            document.getElementById('message').innerHTML = result;
+                            location.reload();
+                        });
+            }
+
+            function agregarPercusion() {
+                fetch('/agregar/Percusion/' + document.getElementById('nombreInstrumento').value)
+                    .then(response => response.text())
+                    .then(result =>{
+                            document.getElementById('message').innerHTML = result;
+                            location.reload();
+                        });
+            }
+
+            function afinar() {
+                fetch('/afinar')
+                    .then(response => response.text())
+                    .then(result => alert(result));
+            }
+
+            function tocar() {
+                fetch('/tocar')
+                    .then(response => response.text())
+                    .then(result => alert(result));
+            }
+
+        </script>
+    </div>
+</body>
+</html>

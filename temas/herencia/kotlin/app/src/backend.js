@@ -14,7 +14,7 @@ app.post('/api/execute', (req, res) => {
     const participants = req.body;
     let kotlinCode = "fun main() {\n";
     kotlinCode += "val manager = Manager()\n";
-    kotlinCode += "val miembroGrupos = mutableListOf<miembroGrupo>()\n";
+    kotlinCode += "val miembroGrupos = mutableListOf<MiembroGrupo>()\n";
   
     participants.forEach(p => {
       if(p.role == "Cantante y Guitarrista") {  
@@ -30,7 +30,7 @@ app.post('/api/execute', (req, res) => {
   
     fs.writeFileSync('./kotlin_src/DynamicMain.kt', kotlinCode, 'utf8');
   
-    exec('kotlinc ./kotlin_src/DynamicMain.kt ./kotlin_src/musicband.kt -include-runtime -d ./kotlin_src/DynamicMain.jar && java -Dfile.encoding=UTF-8 -jar ./kotlin_src/DynamicMain.jar', (error, stdout, stderr) => {
+    exec('kotlinc ./kotlin_src/DynamicMain.kt ./kotlin_src/MusicBandMembers.kt -include-runtime -d ./kotlin_src/DynamicMain.jar && java -Dfile.encoding=UTF-8 -jar ./kotlin_src/DynamicMain.jar', (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);
         return res.status(500).send(stderr);

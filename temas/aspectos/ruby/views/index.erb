@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aspectos en un Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="text"], input[type="password"], button {
+      margin: 10px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #message {
+      margin-top: 10px;
+      color: #007bff;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Aspectos en un Login</h1>
+    <input type="text" id="nombreUsuario" placeholder="Nombre de usuario">
+    <input type="text" id="contraseña" placeholder="contraseña">
+    <button onclick="CrearUsuario()"> Crear Usuario </button>
+    <button onclick="IniciarSesion()"> Iniciar Sesion </button>
+    <button onclick="CambiarContraseña()"> Modificar Contraseña </button>
+    <div id="message"></div>
+  </div>  
+  <script>
+
+    function CrearUsuario() {
+      var nombreUsuario = document.getElementById('nombreUsuario').value;
+      var contraseña_ = document.getElementById('contraseña').value;
+      fetch('/CrearUsuario/' + nombreUsuario + '/' + contraseña_)
+      .then(response => response.text())
+      .then(result => document.getElementById('message').innerHTML = result); 
+    }
+
+    function IniciarSesion() {
+      var nombreUsuario = document.getElementById('nombreUsuario').value;
+      var contraseña_ = document.getElementById('contraseña').value;
+      fetch('/IniciarSesion/' + nombreUsuario + '/' + contraseña_)
+      .then(response => response.text())
+      .then(result => document.getElementById('message').innerHTML = result);
+    }
+
+    function CambiarContraseña() {
+      var contraseña_ = document.getElementById('contraseña').value;
+      fetch('/CambiarContraseña/' + contraseña_)
+      .then(response => response.text())
+      .then(result => document.getElementById('message').innerHTML = result); 
+    }
+  </script>
+</body>
+</html>

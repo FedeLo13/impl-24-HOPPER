@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #0066cc;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aventura</h1>
+        <h2>Elige un Personaje</h2>
+        <button onclick="accionHeroe()">Héroe</button>
+        <button onclick="accionExplorador()">Explorador</button>
+        <button onclick="accionMago()">Mago</button>
+        <button onclick="accionGuerrero()">Guerrero</button>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function accionHeroe() {
+            fetch('/realizar_acciones/Heroe')
+                .then(response => response.text())
+                .then(result => {
+                    document.getElementById('message').innerHTML = "Has elegido a un Héroe";
+                    alert(result);
+                });
+        }
+
+        function accionExplorador() {
+            fetch('/realizar_acciones/Explorador')
+                .then(response => response.text())
+                .then(result => {
+                    document.getElementById('message').innerHTML = "Has elegido a un Explorador";
+                    alert(result);
+                });
+        }
+
+        function accionMago() {
+            fetch('/realizar_acciones/Mago')
+                .then(response => response.text())
+                .then(result => {
+                    document.getElementById('message').innerHTML = "Has elegido a un Mago";
+                    alert(result);
+                });
+        }
+
+        function accionGuerrero() {
+            fetch('/realizar_acciones/Guerrero')
+                .then(response => response.text())
+                .then(result => {
+                    document.getElementById('message').innerHTML = "Has elegido a un Guerrero";
+                    alert(result);
+                });
+        }
+    </script>
+</body>
+</html>
