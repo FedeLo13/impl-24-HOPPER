@@ -1,5 +1,5 @@
-require 'minitest/autorun'
-require_relative '../src/robot'
+require 'minitest/autorun' # Requiere la gema Minitest y carga las asunciones por defecto
+require_relative '../src/robot' # Requiere el archivo que se va a probar
 
 class RobotTest < Minitest::Test
     def setup
