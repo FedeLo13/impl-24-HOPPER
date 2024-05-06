@@ -4,9 +4,8 @@ class Robot
     include Hablador
 
     # Definición de los métodos de acceso a las variables de instancia (con uso de symbols)
-    attr_accessor :nombre
+    attr_accessor :nombre, :num_laseres
     attr_reader :material
-    attr_writer :num_laseres
 
     # Constructor de la clase
     def initialize(nombre, material, num_laseres)
@@ -17,7 +16,7 @@ class Robot
 
     # Definición del método hablar del mixin Hablador, accesible desde cualquier parte del código
     def hablar
-        "HOLA. SOY. UN. ROBOT. MI. NOMBRE. ES. #{@nombre} Y. ESTOY. HECHO. DE. #{@material}."
+        puts "HOLA. SOY. UN. ROBOT. MI. NOMBRE. ES. #{@nombre} Y. ESTOY. HECHO. DE. #{@material}."
     end
 
     # Método de instancia, accesible desde cualquier parte del código
