@@ -19,9 +19,11 @@ end
 class Clan
     include Enumerable
   
+    attr_accessor :tropas_ataque, :tropas_defensa
+
     def initialize
         @tropas_ataque = []
-         @tropas_defensa = []
+        @tropas_defensa = []
     end
   
     # Métodos para agregar y remover tropas
