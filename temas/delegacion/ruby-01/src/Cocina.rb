@@ -1,4 +1,4 @@
-require 'delegate'
+require 'active_support/core_ext/module/delegation'
 
 class Horno
     def calentar(comida)
