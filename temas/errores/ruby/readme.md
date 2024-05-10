@@ -13,22 +13,24 @@ Este archivo contiene una clase `Calculator` que proporciona métodos para reali
 - `power(base, exponent)`: Calcula la potencia de `base` elevado a `exponent`. Maneja el caso en que `exponent` es negativo y `base` es cero devolviendo `nil`.
 
 ### Manejo de Errores en Ruby
+El código maneja errores usando la librería Optional en Ruby, esta librería te proporciona una alternativa al uso del `nil` como manera de indicar que ha ocurrido un error enalguna parte del programa. 
 
-El código maneja errores utilizando declaraciones condicionales para verificar si los argumentos proporcionados a los métodos son numéricos. Si no lo son, devuelve `nil`. Además, en el método `divide` y `power`, se verifica si se está intentando dividir por cero o elevar cero a un exponente negativo, respectivamente, y devuelve `nil` en esos casos.
+Esta librería usa los métodos `Some` que indica que no ha ocurrido ningún error y `None` en el caso contrario, de esta manera es el usuario el que mediante `some?` o `none?` quien decide que hacer en los casos donde ha ocurrido un error.
 
-El manejo de errores en Ruby se realiza principalmente mediante el uso de declaraciones condicionales para verificar los tipos de datos de entrada y cualquier otro escenario que pueda causar errores en la ejecución del programa. Esto ayuda a evitar que el programa falle inesperadamente y permite controlar el flujo de ejecución en caso de errores.
+Un ejemplo a esto último se puede observar e el fichero : `streams.rb`
 
-## Uso de Optionals en Ruby
-
-El concepto de Optionals no está presente de forma nativa en Ruby como lo está en algunos otros lenguajes de programación, como Swift o Kotlin. Sin embargo, se puede usar una gema de ruby llamada `optional` que realiza funciones similares. 
-
-El uso de Optionals no es tan común en Ruby como en otros lenguajes debido a su estilo de programación más orientado a objetos y dinámico.
 
 ## Como desplegar la web de la calculadora
 
-Para ello necesitamos ejecutar el terraform de la carpeta usando
+Para ello necesitamos ejecutar el terraform (que despliega un Dockerfile) de la carpeta usando
+
 ```terraform
 terraform init 
 terraform apply
 ```
-Ahora, una vez veamos que se ha desplegado accedemos a https:localhost:4567 
+Ahora, una vez veamos que se ha desplegado accedemos a `https:localhost:4567 ``
+
+Cuando se requiera dejar el puerto libre, se deberá eliminar el contenedor de docker que ejecuta la imagen con el comando
+`docker container stop <nombre-contenedor>`
+`docker container rm <nombre-contenedor>`
+

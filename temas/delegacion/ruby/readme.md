@@ -98,9 +98,17 @@ class Percusion
 end
 ```
 
+## Dinamismo del include
+En Ruby, los módulos y clases se pueden cargar dinámicamente en tiempo de ejecución. Esto significa que no es necesario cargar todo el código al principio; puedes agregarlo según sea necesario. 
+
+Por ejemplo, si tienes una aplicación que utiliza plugins o extensiones, puedes cargar esos módulos solo cuando el usuario activa una función específica.
+
+Cuando usas `include` para mezclar un módulo en una clase, estás agregando dinámicamente los métodos y funciones definidos en ese módulo a la clase. Esto permite que las instancias de la clase accedan a esa funcionalidad adicional sin necesidad de heredar de una clase base específica.
+
 ## Desplegar Web
 
-Para desplegar la web necesitamos ejecutar el terraform con estos comandos:
+Para desplegar la web necesitamos ejecutar el terraform (que despliega el Dockerfile) con estos comandos:
+
 
 ```terraform
 terraform init
@@ -109,3 +117,6 @@ terraform apply
 Una vez que Terraform haya completado el despliegue, la web estará disponible en la siguiente dirección: 
 
 `https:localhost/4568`
+
+En caso de querer dejar libre el puerto, es necesario parar y eliminar el contenedor docker.
+

@@ -1,10 +1,12 @@
 name: Aspectos Workflow
 
 on: 
-  push:
-    branches:
-      - feat-aspectos
-
+#  push:
+#    branches:
+#      - feat-aspectos
+   workflow_dispatch:
+     branches:
+       - main
 jobs:
   build:
     runs-on: ubuntu-latest

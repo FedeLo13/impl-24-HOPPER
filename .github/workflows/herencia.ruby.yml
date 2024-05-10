@@ -1,9 +1,6 @@
 name: Ruby Sinatra CI
 
 on:
-  push:
-    branches:
-      - feat-herencia
   workflow_dispatch: 
 
 jobs:

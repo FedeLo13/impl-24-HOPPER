@@ -1,9 +1,6 @@
 name: Ruby Errors
 
 on:
-  push:
-    branches:
-      - feat-errores
   workflow_dispatch:
 
 jobs:
@@ -20,7 +17,8 @@ jobs:
         ruby-version: 3.0.0
 
     - name: Install dependencies
-      run: gem install test-unit
+      run: gem install test-unit && gem install optional
+
 
     - name: Run Ruby tests
       run: ruby ./temas/errores/ruby/testCalculator.rb
@@ -38,6 +36,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.0
-
+    - name: Install dependencies
+      run: gem install test-unit && gem install optional && gem install rx
     - name: Run Ruby script
       run: ruby ./temas/errores/ruby/calculator.rb

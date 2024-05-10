@@ -45,7 +45,6 @@
 .vscode/settings.json
 .project
 
-# Terraform
-**/.terraform
-**/.terraform.lock.hcl
-**/*.tfstate
+
+# Sentinel runtime directory
+.sentinel

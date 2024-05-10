@@ -1,27 +1,30 @@
 
-# main.tf
-
-provider "null" {}
-
-resource "null_resource" "install_ruby" {
-  provisioner "local-exec" {
-    command = "brew install ruby && echo 'export PATH=/usr/local/Cellar/ruby/2.4.1_1/bin:$PATH' >> ~/.zprofile"
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0.1"
+    }
   }
 }
 
-resource "null_resource" "install_sinatra" {
-  depends_on = [null_resource.install_ruby]
+provider "docker" {}
 
-  provisioner "local-exec" {
-    command = "brew install brew-gem && brew gem install sinatra"
+
+resource "docker_image" "app_image" {
+  name         = "my-sinatra-app:latest"
+  build {
+    context    = path.module
+    dockerfile = "Dockerfile"
   }
 }
 
-resource "null_resource" "run_app" {
-  depends_on = [null_resource.install_sinatra]
+resource "docker_container" "app_container" {
+  image = docker_image.app_image.name
+  name  = "mi-app-container"
+  ports {
+    internal = 4567
+    external = 4567
 
-  provisioner "local-exec" {
-    command = "ruby app.rb"
-    working_dir = "${path.module}" 
   }
 }

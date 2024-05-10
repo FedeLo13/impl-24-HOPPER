@@ -137,7 +137,8 @@ class Aventura
 end
 ```
 # Desplegar web 
-Para desplegar la web necesitamos ejecutar el terraform con estos comandos:
+Para desplegar la web necesitamos ejecutar el terraform (que usa un Dockerfile) con estos comandos:
+
 ```terraform
 terraform init
 terraform apply
@@ -146,3 +147,9 @@ Una vez que Terraform haya completado el despliegue, la web estará disponible e
 `https:localhost/4567`
 
 ![image](https://github.com/martaajonees/impl-24/assets/100365874/693b005e-88a2-4232-81a3-82d536ea8c84)
+
+Una vez se quiera dejar libre el puerto del local host se debe parar y eliminar el contenedor que lo ejecuta desde docker usando
+
+`docker stop <nombre-contenedor>`
+`docker rm <nombre-contenedor>`
+
