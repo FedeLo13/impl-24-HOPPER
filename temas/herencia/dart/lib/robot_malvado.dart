@@ -10,7 +10,7 @@ class RobotMalvado extends Robot {
     print("El objetivo de el robot malvado $nombre es destruir a los humanos y conquistar el mundo.");
   }
 
-  void disparar_laser() {
+  void dispararLaser() {
     if (numLaseres > 0) {
       numLaseres--;
       acciones.add("PEW! El robot malvado $nombre dispara un láser. Le quedan $numLaseres láseres.");
