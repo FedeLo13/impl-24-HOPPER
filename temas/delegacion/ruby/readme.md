@@ -2,6 +2,8 @@
 # Delegación en Ruby
 ## Ejemplo 
 
+Los ejemplo de delegación los podemos encontrar aquí: [Ejemplo](Orquesta.rb)
+
 Este proyecto muestra un ejemplo de una orquesta en Ruby, donde se utilizan mecanismos propios del lenguaje como `module` y `proc`.
 
 En Ruby, un `module` es una colección de métodos y constantes. Puedes usarlos para agrupar funcionalidades relacionadas y luego incluir ese módulo en otras clases para extender su funcionalidad. 
@@ -104,6 +106,13 @@ En Ruby, los módulos y clases se pueden cargar dinámicamente en tiempo de ejec
 Por ejemplo, si tienes una aplicación que utiliza plugins o extensiones, puedes cargar esos módulos solo cuando el usuario activa una función específica.
 
 Cuando usas `include` para mezclar un módulo en una clase, estás agregando dinámicamente los métodos y funciones definidos en ese módulo a la clase. Esto permite que las instancias de la clase accedan a esa funcionalidad adicional sin necesidad de heredar de una clase base específica.
+
+# Construir programa y pruebas
+Para verificar la corrección del ejemplo se han desarrollado unas pruebas, en ruby usamos para ello la gema `minitest` que permite, entre otras cosas, comparar flujos de salida. 
+La prueba la puede ver desde auí directamente con este enlace: [Tests](testOrquesta.rb)
+
+Para construir el programa y las pruebas se ha desarrollado un github Action, puede runnearlo manualmente desde
+el siguiente enlace : [Action](../../../.github/workflows/delegacion.ruby.yml)
 
 ## Desplegar Web
 

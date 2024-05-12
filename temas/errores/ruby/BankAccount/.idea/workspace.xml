@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="028fc4da-8859-400a-9edf-a82b477f283a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/BankAccount.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/BankAccount.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/Comparable.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/chai/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/chai/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/chai/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/chai/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/mocha/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/mocha/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/mocha/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/node_modules/@types/mocha/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/testBankAccount.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../anotaciones/ruby/testBankAccount.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2gB088uSEAZsxRJlGTEhfKDAXEo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.BankAccountTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BankAccountTest.testComparatorById.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat-anotaciones&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/uca/iiss" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BankAccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BankAccount" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BankAccountTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BankAccountTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="028fc4da-8859-400a-9edf-a82b477f283a" name="Changes" comment="" />
+      <created>1715155503113</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715155503113</updated>
+      <workItem from="1715155505201" duration="1180000" />
+      <workItem from="1715158963462" duration="4349000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
