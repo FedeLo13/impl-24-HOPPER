@@ -6,8 +6,8 @@ class RobotMalvado extends Robot {
   RobotMalvado(super.nombre, super.material, this.numLaseres);
 
   @override
-  void objetivo() {
-    print("El objetivo de el robot malvado $nombre es destruir a los humanos y conquistar el mundo.");
+  String objetivo() {
+    return "El objetivo de el robot malvado $nombre es destruir a los humanos y conquistar el mundo.";
   }
 
   void dispararLaser() {

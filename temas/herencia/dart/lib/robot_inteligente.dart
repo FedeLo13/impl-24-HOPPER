@@ -5,8 +5,8 @@ class RobotInteligente extends Robot with Hablador {
   RobotInteligente(super.nombre, super.material);
 
   @override
-  void objetivo() {
-    print("El objetivo de el robot inteligente $nombre es comunicarse con humanos y realizar cálculos complejos.");
+  String objetivo() {
+    return "El objetivo de el robot inteligente $nombre es comunicarse con humanos y realizar cálculos complejos.";
   }
 
   @override

@@ -24,5 +24,5 @@ abstract class Robot {
   }
 
   //Método abstracto
-  void objetivo();
+  String objetivo();
 }
