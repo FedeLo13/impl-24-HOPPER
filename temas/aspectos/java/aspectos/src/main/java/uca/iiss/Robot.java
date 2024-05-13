@@ -7,7 +7,14 @@ public class Robot {
     private int annioFabricacion;
     private String fabricante;
 
-    public Robot() {} // Constructor por defecto
+    // Constructor por defecto
+    public Robot() {
+        this.id = "";
+        this.nombre = "";
+        this.material = "";
+        this.annioFabricacion = 2024;
+        this.fabricante = "";
+    }
 
     public String getId() {
         return id;
@@ -48,5 +55,4 @@ public class Robot {
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
-
 }
