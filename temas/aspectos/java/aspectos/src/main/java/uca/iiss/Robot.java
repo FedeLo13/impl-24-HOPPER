@@ -1,13 +1,10 @@
 package uca.iiss;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class Robot {
     private String id;
     private String nombre;
     private String material;
-    private Date fechaFabricacion;
+    private int annioFabricacion;
     private String fabricante;
 
     public Robot() {} // Constructor por defecto
@@ -36,20 +33,13 @@ public class Robot {
         this.material = material;
     }
 
-    public Date getFechaFabricacion() {
-        return fechaFabricacion;
+    public int getAnnioFabricacion() {
+        return annioFabricacion;
     }
 
-    public void setFechaFabricacion(String fechaFabricacion) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            Date date = formatter.parse(fechaFabricacion);
-            this.fechaFabricacion = date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setAnnioFabricacion(int annioFabricacion) {
+        this.annioFabricacion = annioFabricacion;
     }
-
 
     public String getFabricante() {
         return fabricante;
