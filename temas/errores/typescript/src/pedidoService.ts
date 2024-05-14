@@ -1,20 +1,34 @@
-import { LosPollosHermanos, Plato } from './restaurante';
+import { Restaurante, Plato, PlatoError } from './restaurante';
 
 // Error para los pedidos
-class PedidoError extends Error { }
+export class PedidoError extends Error {
+    public tipo: string;
+    private constructor(message: string, tipo: string) {
+        super(message);
+        this.name = 'PedidoError';
+        this.tipo = tipo;
+    }
 
-export class PedidoServicio {
-    private losPollosHermanos: LosPollosHermanos;
+    public static PedidoVacio(): PedidoError {
+        return new PedidoError('El pedido no puede estar vacío.', 'PedidoVacio');
+    }
+ }
 
-    constructor() {
-        this.losPollosHermanos = new LosPollosHermanos();
+export class PedidoService {
+    private restaurante: Restaurante;
+
+    constructor(restaurante: Restaurante) {
+        this.restaurante = restaurante;
     }
 
     public async realizarPedido(pedido: Plato[]): Promise<string | undefined> {      
+        // Comprueba si el pedido está vacío
+        if(pedido ===undefined || pedido.length === 0) PedidoError.PedidoVacio();
+
         // Comprueba si los platos del pedido existen y si hay suficiente stock
         pedido.forEach(platoPedido => {
             const { nombre, cantidad } = platoPedido;
-            const platoStock = this.losPollosHermanos.obtenerPlatosDisponibles().find(p => p.nombre === nombre);
+            const platoStock = this.restaurante.obtenerPlatosDisponibles().find(p => p.nombre === nombre);
             
             // Comprueba si el plato existe o si hay suficiente stock
             try { this.verificarDisponibilidadPlato(nombre, cantidad); }
@@ -23,22 +37,22 @@ export class PedidoServicio {
 
         // Acualiza el stock de los platos
         pedido.forEach(platoPedido => {
-            this.losPollosHermanos.actualizarStock(platoPedido);
+            this.restaurante.actualizarStock(platoPedido);
         });
 
         return undefined;
     }
 
     private verificarDisponibilidadPlato(nombre: string, cantidad: number): void {
-        const platoStock = this.losPollosHermanos.obtenerPlatosDisponibles().find(p => p.nombre === nombre);
+        const platoStock = this.restaurante.obtenerPlatosDisponibles().find(p => p.nombre === nombre);
 
         // Comprueba si el plato existe
-        if (platoStock === undefined) {
-            throw new PedidoError(`El plato ${nombre} no está disponible en Los Pollos Hermanos.`);
-        }
+        if (platoStock === undefined)
+            PlatoError.PlatoNoEncontrado(nombre);
+            
         // Comprueba si hay suficiente stock
-        if (platoStock.cantidad < cantidad) {
-            throw new PedidoError(`No hay suficientes platos ${nombre} en Los Pollos Hermanos.`);
-        }
+        else if (platoStock.cantidad < cantidad)
+            PlatoError.PlatoStockInsuficiente(nombre);
+        
     }
 }
