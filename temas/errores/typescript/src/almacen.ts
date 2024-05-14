@@ -43,24 +43,29 @@ export class Almacen {
 
     // Resta el stock de los articulos
     public actualizarStock(articuloPedido: Articulo): void {
-        // Itera sobre los articulos del pedido
-        const articulo = this.stockArticulos.find(a => a.nombre === articuloPedido.nombre);
+        // Verifica la disponibilidad del artículo antes de actualizar el stock
+        this.verificarDisponibilidadArticulo(articuloPedido.nombre, articuloPedido.cantidad);
 
-        // Comprueba si el articulo existe
-        if (articulo === undefined) {
-            throw ArticuloError.ArticuloNoEncontrado(articuloPedido.nombre);
-
-            // Comprueba si la cantidad es negativa
-        } else if (articuloPedido.cantidad < 0) {
-            throw ArticuloError.CantidadNegativa(articuloPedido.nombre);
-
-            // Comprueba si hay suficiente stock
-        } else if (articulo.cantidad < articuloPedido.cantidad) {
-            throw ArticuloError.ArticuloStockInsuficiente(articuloPedido.nombre);
-
-            // Actualiza el stock de los articulos    
-        } else {
+        // Si el artículo está disponible, actualiza el stock
+        const articulo = this.obtenerArticulosDisponibles().find(a => a.nombre === articuloPedido.nombre);
+        if (articulo !== undefined) {
             articulo.cantidad -= articuloPedido.cantidad; // Resta la cantidad de articulos del stock
         }
+    }
+
+    public verificarDisponibilidadArticulo(nombre: string, cantidad: number): void {
+        const articuloStock = this.obtenerArticulosDisponibles().find(a => a.nombre === nombre);
+
+        // Comprueba si el articulo existe
+        if (articuloStock === undefined)
+            throw ArticuloError.ArticuloNoEncontrado(nombre);
+
+        // Comprueba si la cantidad es negativa
+        else if (cantidad < 0)
+            throw ArticuloError.CantidadNegativa(nombre);
+
+        // Comprueba si hay suficiente stock
+        else if (articuloStock.cantidad < cantidad)
+            throw ArticuloError.ArticuloStockInsuficiente(nombre);
     }
 }

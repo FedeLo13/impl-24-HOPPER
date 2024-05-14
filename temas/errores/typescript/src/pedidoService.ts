@@ -23,36 +23,16 @@ export class PedidoService {
         // Comprueba si el pedido está vacío
         if (pedido === undefined || pedido.length === 0) throw PedidoError.PedidoVacio();
 
-        // Comprueba si los articulos del pedido existen y si hay suficiente stock
+        // Verifica la disponibilidad de cada artículo antes de realizar el pedido
         pedido.forEach(articuloPedido => {
-            const { nombre, cantidad } = articuloPedido;
-            const articuloStock = this.almacen.obtenerArticulosDisponibles().find(a => a.nombre === nombre);
-
-            // Comprueba si el articulo existe o si hay suficiente stock
-            try {
-                this.verificarDisponibilidadArticulo(nombre, cantidad);
-            } catch (error) {
-                if (error instanceof Error) return error.message;
-            }
+            this.almacen.verificarDisponibilidadArticulo(articuloPedido.nombre, articuloPedido.cantidad);
         });
 
-        // Acualiza el stock de los platos
+        // Actualiza el stock de los artículos
         pedido.forEach(articuloPedido => {
             this.almacen.actualizarStock(articuloPedido);
         });
 
         return undefined;
-    }
-
-    private verificarDisponibilidadArticulo(nombre: string, cantidad: number): void {
-        const articuloStock = this.almacen.obtenerArticulosDisponibles().find(a => a.nombre === nombre);
-
-        // Comprueba si el plato existe
-        if (articuloStock === undefined)
-            ArticuloError.ArticuloNoEncontrado(nombre);
-
-        // Comprueba si hay suficiente stock
-        else if (articuloStock.cantidad < cantidad)
-            ArticuloError.ArticuloStockInsuficiente(nombre);
     }
 }
