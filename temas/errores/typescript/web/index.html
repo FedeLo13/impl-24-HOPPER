@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pedido Service</title>
+</head>
+
+<body>
+    <input type="text" id="nombreArticulo" placeholder="Nombre del articulo">
+    <input type="number" id="cantidadArticulo" placeholder="Cantidad">
+    <button id="realizarPedido">Realizar Pedido</button>
+    <p id="mensaje"></p>
+
+    <script>
+        document.getElementById('realizarPedido').addEventListener('click', async () => {
+            const nombreArticulo = document.getElementById('nombreArticulo').value;
+            const cantidadArticulo = document.getElementById('cantidadArticulo').value;              
+
+            try {
+                const response = await fetch('http://localhost:3000/realizarPedido', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify([{ nombre: nombreArticulo, cantidad: Number(cantidadArticulo) }])
+                });
+
+                if (!response.ok) {
+                    throw new Error(await response.text());
+                }
+
+                document.getElementById('mensaje').textContent = 'Pedido realizado con éxito';
+            } catch (error) {
+                document.getElementById('mensaje').textContent = error.message;
+            }
+        });
+    </script>
+</body>
+
+</html>
