@@ -21,9 +21,9 @@ export class PedidoService {
         this.restaurante = restaurante;
     }
 
-    public async realizarPedido(pedido: Plato[]): Promise<string | undefined> {      
+    public async realizarPedido(pedido: Plato[]): Promise<void> {      
         // Comprueba si el pedido está vacío
-        if(pedido ===undefined || pedido.length === 0) PedidoError.PedidoVacio();
+        if (pedido === undefined || pedido.length === 0) throw PedidoError.PedidoVacio();
 
         // Comprueba si los platos del pedido existen y si hay suficiente stock
         pedido.forEach(platoPedido => {
