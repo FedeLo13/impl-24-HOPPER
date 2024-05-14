@@ -1,58 +1,58 @@
-import { Restaurante, Plato, PlatoError } from './restaurante';
+import { Almacen, Articulo, ArticuloError } from './almacen';
 
 // Error para los pedidos
 export class PedidoError extends Error {
-    public tipo: string;
-    private constructor(message: string, tipo: string) {
+    private constructor(message: string) {
         super(message);
         this.name = 'PedidoError';
-        this.tipo = tipo;
     }
 
     public static PedidoVacio(): PedidoError {
-        return new PedidoError('El pedido no puede estar vacío.', 'PedidoVacio');
+        return new PedidoError('El pedido no puede estar vacío.');
     }
- }
+}
 
 export class PedidoService {
-    private restaurante: Restaurante;
+    private almacen: Almacen;
 
-    constructor(restaurante: Restaurante) {
-        this.restaurante = restaurante;
+    constructor(almacen: Almacen) {
+        this.almacen = almacen;
     }
 
-    public async realizarPedido(pedido: Plato[]): Promise<void> {      
+    public async realizarPedido(pedido: Articulo[]): Promise<void> {
         // Comprueba si el pedido está vacío
         if (pedido === undefined || pedido.length === 0) throw PedidoError.PedidoVacio();
 
-        // Comprueba si los platos del pedido existen y si hay suficiente stock
-        pedido.forEach(platoPedido => {
-            const { nombre, cantidad } = platoPedido;
-            const platoStock = this.restaurante.obtenerPlatosDisponibles().find(p => p.nombre === nombre);
-            
-            // Comprueba si el plato existe o si hay suficiente stock
-            try { this.verificarDisponibilidadPlato(nombre, cantidad); }
-            catch (error) { return error.message; }
+        // Comprueba si los articulos del pedido existen y si hay suficiente stock
+        pedido.forEach(articuloPedido => {
+            const { nombre, cantidad } = articuloPedido;
+            const articuloStock = this.almacen.obtenerArticulosDisponibles().find(a => a.nombre === nombre);
+
+            // Comprueba si el articulo existe o si hay suficiente stock
+            try {
+                this.verificarDisponibilidadArticulo(nombre, cantidad);
+            } catch (error) {
+                if (error instanceof Error) return error.message;
+            }
         });
 
         // Acualiza el stock de los platos
-        pedido.forEach(platoPedido => {
-            this.restaurante.actualizarStock(platoPedido);
+        pedido.forEach(articuloPedido => {
+            this.almacen.actualizarStock(articuloPedido);
         });
 
         return undefined;
     }
 
-    private verificarDisponibilidadPlato(nombre: string, cantidad: number): void {
-        const platoStock = this.restaurante.obtenerPlatosDisponibles().find(p => p.nombre === nombre);
+    private verificarDisponibilidadArticulo(nombre: string, cantidad: number): void {
+        const articuloStock = this.almacen.obtenerArticulosDisponibles().find(a => a.nombre === nombre);
 
         // Comprueba si el plato existe
-        if (platoStock === undefined)
-            PlatoError.PlatoNoEncontrado(nombre);
-            
+        if (articuloStock === undefined)
+            ArticuloError.ArticuloNoEncontrado(nombre);
+
         // Comprueba si hay suficiente stock
-        else if (platoStock.cantidad < cantidad)
-            PlatoError.PlatoStockInsuficiente(nombre);
-        
+        else if (articuloStock.cantidad < cantidad)
+            ArticuloError.ArticuloStockInsuficiente(nombre);
     }
 }
