@@ -12,23 +12,20 @@ app.get('/', function (req, res) {
 });
 
 
-// Crear una instancia de Restaurante y agregar algunos platos
-const restaurante = new Almacen();
-restaurante.insertarArticulo({ nombre: 'Plato1', cantidad: 10 });
-restaurante.insertarArticulo({ nombre: 'Plato2', cantidad: 5 });
+// Ejemplo de articulos
+const almacen = new Almacen();
+almacen.insertarArticulo({ nombre: 'Tornillo', cantidad: 100 });
+almacen.insertarArticulo({ nombre: 'Tuerca', cantidad: 80 });
+almacen.insertarArticulo({ nombre: 'Sierra', cantidad: 15 });
+almacen.insertarArticulo({ nombre: 'Cerrojo', cantidad: 13 });
 
-const pedidoService = new PedidoService(restaurante);
+const pedidoService = new PedidoService(almacen);
 
 app.use(bodyParser.json());
 
 app.post('/realizarPedido', async (req, res) => {
     try {
-        let pedido: Articulo[] = req.body;
-        const { nombre, cantidad } = req.body;
-        if (nombre === undefined || cantidad === undefined)
-            pedido = [];
-
-        await pedidoService.realizarPedido(pedido);
+        await pedidoService.realizarPedido(req.body);
         res.status(200).send('Pedido realizado con éxito');
     } catch (error) {
         if (error instanceof Error) res.status(400).send(error.message);
