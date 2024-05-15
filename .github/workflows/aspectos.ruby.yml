@@ -1,0 +1,55 @@
+name: Aspectos RUBY (Marta y Sergio)
+
+on: 
+# push:
+#    branches:
+#      - feat-aspectos
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.0
+
+    - name: Install dependencies
+      run:  |
+        gem install aquarium
+
+
+    - name: Run script Ruby
+      run: ruby ./temas/aspectos/ruby/aspectos.rb
+
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.0
+
+    - name: Install dependencies
+      run:  |
+        gem install minitest
+        gem install aquarium
+
+        
+    - name: Run Ruby test
+      run: ruby ./temas/aspectos/ruby/testAspectos.rb

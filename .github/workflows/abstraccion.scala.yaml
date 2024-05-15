@@ -1,0 +1,45 @@
+name: Scala CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    container:
+      image: hseeberger/scala-sbt:8u302_1.5.5_2.13.6
+      options: --user root
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        path: proyecto
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.sbt
+          ~/.ivy2/cache
+          ~/.cache/coursier
+        key: ${{ runner.os }}-sbt-${{ hashFiles('**/*.sbt', '**/*.scala') }}
+        restore-keys: |
+          ${{ runner.os }}-sbt-
+
+    - name: Run tests with verbose logging
+      run: |
+        cd proyecto/temas/abstraccion/scala/proyecto
+        sbt 'set logLevel in Test := Level.Debug' test
+
+    - name: Create issue on test failure
+      if: failure()
+      uses: imjohnbo/issue-bot@v3
+      with:
+        assignees: "Alberto-mp"
+        labels: "bug, test failure"
+        title: "Tests failed in CI"
+        body: "Tests have failed on the latest commit. Please review the logs and take necessary action."
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -18,7 +18,9 @@ jobs:
     
     defaults:
       run:
-        working-directory: temas/inyeccion/csharp/Code
+        working-directory: temas/abstraccion/csharp/Code
+
+        
 
 
     steps:

@@ -1,4 +1,3 @@
-
 terraform {
   required_providers {
     docker = {
@@ -23,11 +22,9 @@ resource "docker_image" "app_image" {
 
 resource "docker_container" "app_container" {
   image = docker_image.app_image.name
-  name = "mi-app-container"
+  name = "mi-app-container-lambdas"
   ports {
     internal = 4568
     external = 4568
   }
 }
-  
-

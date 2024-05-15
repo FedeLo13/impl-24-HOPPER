@@ -1,6 +1,6 @@
 # Aspectos en Ruby #
 ## Ejemplo ##
-Este ejemplo trata sobre una interfaz de login. Se requiere que el sistema registre cada acción que realice el usuario tales como el inicio de sesión o la modificación de contraseñas. Por tanto, se utilizará un aspecto que tendrá como objetivo registrar las acciones de los usuarios sin tener que modificar nada del código original. Para ello, se ha utilizado la gema aquarium, la cual provee de herramientas útiles para la definición de aspectos tales como :after, :calls_to, join_point, etc.. 
+Este ejemplo trata sobre una interfaz de login. Se requiere que el sistema registre cada acción que realice el usuario tales como el inicio de sesión o la modificación de contraseñas. Por tanto, se utilizará un aspecto que tendrá como objetivo registrar las acciones de los usuarios sin tener que modificar nada del código original. Para ello, se ha utilizado la gema `aquarium`, la cual provee de herramientas útiles para la definición de aspectos tales como `:after`, `:calls_to`, `join_point`, etc.. El ejemplo se encuentra [aquí](aspectos.rb).
 
 ```ruby
 require 'aquarium'
@@ -78,7 +78,7 @@ usuario2.login_account(usuario2.username, error_password)
 ```ruby
 require 'aquarium'
 ```
-Se importa la gema aquarium que provee de herramientas útiles para la definición de aspectos en Ruby.
+Se importa la gema `aquarium` que provee de herramientas útiles para la definición de aspectos en Ruby.
 
 ```ruby
 class Auditor
@@ -87,7 +87,7 @@ class Auditor
   end
 end
 ```
-La clase Auditor será la que registre las acciones que realice el usuario.
+La clase `Auditor` será la que registre las acciones que realice el usuario.
 
 ```ruby
 class User
@@ -115,11 +115,11 @@ class User
   end
 end
 ```
-La clase User está compuesta del nombre de usuario (o de cuenta) y de la contraseña del mismo.
+La clase `User` está compuesta del nombre de usuario (o de cuenta) y de la contraseña del mismo.
 
-La función login_account se encarga del inicio de sesión del usuario en la aplicación devolviendo un mensaje de bienvenida si fue correcta la contraseña y en caso contrario un mensaje de contraseña incorrecta.
+La función `login_account` se encarga del inicio de sesión del usuario en la aplicación devolviendo un mensaje de bienvenida si fue correcta la contraseña y en caso contrario un mensaje de contraseña incorrecta.
 
-La función update_account cambia la contraseña que tiene el usuario a una nueva que se le pasa por parámetro.
+La función `update_account` cambia la contraseña que tiene el usuario a una nueva que se le pasa por parámetro.
 
 ```ruby
 # Configuración de aspectos con Aquarium
@@ -137,20 +137,20 @@ Aspect.new :after, :calls_to => :update_account, :for_types => [User] do |join_p
   Auditor.log("El usuario '#{user.username}' ha actualizado su contraseña de cuenta a '#{user.password}'")
 end
 ```
-Se incluye de la gema aquarium la clase Aspects que servirá para definir los aspectos.
+Se incluye de la gema `aquarium` la clase `Aspects` que servirá para definir los aspectos.
 
-Explicación de las herramientas de Aquarium:
-- :after --> Especifica que el aspecto asociado se ejecutará después del punto de unión declarado.
-- :calls_to => 'FUNCIÓN' --> Especifica que el punto de unión es una llamada a la FUNCIÓN correspondiente.
-- :for_types => [Clase] --> Especifica que el aspecto solo se aplicará a objetos de la clase 'Clase'.
-- do | | --> Los argumentos que se le pasan al aspecto.
-- join_point --> Argumento que representa el punto de unión en el flujo de ejecución del programa.
-- clase --> Argumento que representa una instancia de la clase 'Clase'.
-- _ --> Marcador de posición para argumentos adicionales (por si se quiere algún atributo determinado de la clase).
+Explicación de las herramientas de `Aquarium`:
+- `:after` --> Especifica que el aspecto asociado se ejecutará después del punto de unión declarado.
+- `:calls_to` => 'FUNCIÓN' --> Especifica que el punto de unión es una llamada a la FUNCIÓN correspondiente.
+- `:for_types` => [Clase] --> Especifica que el aspecto solo se aplicará a objetos de la clase 'Clase'.
+- `do | |` --> Los argumentos que se le pasan al aspecto.
+- `join_point` --> Argumento que representa el punto de unión en el flujo de ejecución del programa.
+- `clase` --> Argumento que representa una instancia de la clase 'Clase'.
+- `_` --> Marcador de posición para argumentos adicionales (por si se quiere algún atributo determinado de la clase).
 
-El primer aspecto instancia un objeto de la clase Aspect y se llamará después de la ejecución de login_account. En este caso, se coge como argumento adicional la password para comparar si la password con la que se realiza el login es la del propio usuario u otra. El sistema registrará si el usuario inicio sesión correctamente o fue incorrecta la contraseña llamando a la clase Auditor para que registre ese mensaje.
+El primer aspecto instancia un objeto de la clase `Aspect` y se llamará después de la ejecución de `login_account`. En este caso, se coge como argumento adicional la password para comparar si la password con la que se realiza el login es la del propio usuario u otra. El sistema registrará si el usuario inicio sesión correctamente o fue incorrecta la contraseña llamando a la clase `Auditor` para que registre ese mensaje.
 
-El segundo aspecto instancia un objeto de la clase Aspect y se llamará después de la ejecución de update_account. Los argumentos serán el join_point y la instancia de la clase User ya que no se necesita ningún argumento más. La clase Auditor devolverá el mensaje de actualización de la contraseña para que quede registrado en el sistema.
+El segundo aspecto instancia un objeto de la clase `Aspect` y se llamará después de la ejecución de `update_account`. Los argumentos serán el `join_point` y la instancia de la clase `User` ya que no se necesita ningún argumento más. La clase `Auditor` devolverá el mensaje de actualización de la contraseña para que quede registrado en el sistema.
 
 
 ```ruby
@@ -177,20 +177,25 @@ usuario2.login_account(usuario2.username, error_password)
 ```
 Prueba para ver el resultado del ejemplo por pantalla.
 
-Nota: Los mensajes que son devueltos por la clase Auditor se muestran al usuario al ser un ejemplo. Si fuera una aplicación real no se mostraría lógicamente.
+Nota: Los mensajes que son devueltos por la clase `Auditor` se muestran al usuario al ser un ejemplo. Si fuera una aplicación real no se mostraría lógicamente.
 
+# Construir programa y pruebas #
+
+Para verificar la corrección del ejemplo se han desarrollado unas pruebas, en ruby usamos para ello la gema `minitest` que permite, entre otras cosas, comparar flujos de salida. La prueba la puede ver desde aquí directamente con este enlace: [Tests](testAspectos.rb)
+
+Para construir el programa y las pruebas se ha desarrollado un github Action, puede runnearlo manualmente desde el siguiente enlace : [Action](../../../.github/workflows/aspectos.ruby.yml).
 
 
 ## Desplegar Web ##
 
-Para desplegar la web necesitamos ejecutar el terraform con estos comandos:
+Para desplegar la web necesitamos ejecutar el terraform con estos comandos y poseer el [Dockerfile](Dockefile) en cuestión:
 
 ``` terraform
 terraform init
 terraform apply
 ```
+El archivo Terraform se encuentra en el siguiente enlace: [Aspectos.tf](Aspectos.tf)
+
 Una vez que Terraform haya completado el despliegue, la web estará disponible en la siguiente dirección: 
 
 `https:localhost/4568`
-
-Nota: Este Terraform ha sido creado para máquinas que utilicen Windows como SO. Para poder ejecutar el Terraform en otros SO, modificar los comandos de instalación según lo requiera su SO.

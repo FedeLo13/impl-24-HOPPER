@@ -1,0 +1,43 @@
+name: Java CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    container:
+      image: maven:3.8.4-openjdk-17
+      options: --user root
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        path: proyecto
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.m2
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Run tests with verbose logging
+      run: |
+        cd proyecto/temas/aspectos/java/proyecto
+        mvn -B test 
+
+    - name: Create issue on test failure
+      if: failure()
+      uses: imjohnbo/issue-bot@v3
+      with:
+        assignees: "Alberto-mp"
+        labels: "bug, test failure"
+        title: "Tests failed in CI"
+        body: "Tests have failed on the latest commit. Please review the logs and take necessary action."
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
