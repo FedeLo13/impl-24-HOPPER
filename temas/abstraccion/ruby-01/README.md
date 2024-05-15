@@ -162,7 +162,7 @@ Tendremos 3 ficheros de prueba para estas clases:
 - [hablador_test.rb](test/hablador_test.rb)
 - [figura_test.rb](test/figura_test.rb)
 
-En ellos encontraremos unas sencillas pruebas para verificar la correción de ambas clases. Se ha utilizado la gema `minitest`, que permite realizar pruebas unitarias de manera simple y sencilla.
+En ellos encontraremos unas sencillas pruebas para verificar la correción de las clases. Se ha utilizado la gema `minitest`, que permite realizar pruebas unitarias de manera simple y sencilla.
 
 Esta gema viene incluida en el fichero de configuración [Gemfile](Gemfile).
 
