@@ -18,8 +18,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: temas/inyeccion/csharp/Code
-
+        working-directory: temas/inyeccion/Code
 
     steps:
     - uses: actions/checkout@v4
@@ -35,4 +34,3 @@ jobs:
       run: dotnet run
     - name: Test
       run: cd ../Test && dotnet test
-

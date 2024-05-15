@@ -1,11 +1,12 @@
-name: Lambdas RUBY (Marta y Sergio)
+name: Aspectos Workflow
 
 on: 
-# push
-  workflow_dispatch:
-    branches:
-      - main
-
+#  push:
+#    branches:
+#      - feat-aspectos
+   workflow_dispatch:
+     branches:
+       - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,14 +21,15 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.0
-    
+
     - name: Install dependencies
       run:  |
-        gem install rx
+        gem install aquarium
+
 
     - name: Run script Ruby
-      run: ruby ./temas/lambdas/ruby/lambdas.rb
-    
+      run: ruby ./temas/aspectos/ruby/aspectos.rb
+
   test:
     runs-on: ubuntu-latest
 
@@ -45,7 +47,8 @@ jobs:
     - name: Install dependencies
       run:  |
         gem install minitest
-        gem install rx
+        gem install aquarium
 
+        
     - name: Run Ruby test
-      run: ruby ./temas/lambdas/ruby/testLambdas.rb
+      run: ruby ./temas/aspectos/ruby/testAspectos.rb
