@@ -156,9 +156,21 @@ Tendremos 3 ficheros de prueba para estas clases:
 - [hablador_test.rb](test/hablador_test.rb)
 - [figura_test.rb](test/figura_test.rb)
 
-En ellos encontraremos unas sencillas pruebas para verificar la correción de las clases. Se ha utilizado la gema `minitest`, que permite realizar pruebas unitarias de manera simple y sencilla.
+En ellos encontraremos unas sencillas pruebas para verificar la correción de las clases. Se ha utilizado la gema `minitest`, que permite realizar pruebas unitarias de manera simple y sencilla, así como las gemas `sinatra` y `rackup` para la aplicación web.
 
-Esta gema viene incluida en el fichero de configuración [Gemfile](Gemfile).
+Estas gemas vienen incluidas en el fichero de configuración [Gemfile](Gemfile).
+
+La ejecución de las pruebas se puede realizar ejecutando los propios archivos de prueba con ruby, sin embargo se ha definido un pipeline de Github Actions que permite ejecutarlas automáticamente. Este archivo se encuentra [aquí](../../../.github/workflows/abstraccion.ruby-01.yml) y se puede ejecutar directamente desde GitHub en el apartado 'Actions'.
 
 # Despliegue
 
+Para el despliegue del programa web de prueba se ha definido un [Dockerfile](./Dockerfile) y un archivo de [Terraform](./main.tf).
+
+Los siguientes pasos permiten desplegar el programa:
+
+1. Crear la imagen ejecutando el siguiente comando, situándonos en el directorio en el que se encuentra el [Dockerfile](./Dockerfile): `docker build -t abstraccion_img .`
+2. Desde el mismo directorio, ejecutar `terraform init` y `terraform apply`. Cuando nos lo pida, escribiremos 'yes'.
+
+Con esto quedará desplegado el programa y podremos acceder a él a través de http://localhost:4567/.
+
+Es importante liberar el puerto tras usar el programa, para ello nos volvemos a situar en el directorio anterior y ejecutamos `terraform destroy`.
