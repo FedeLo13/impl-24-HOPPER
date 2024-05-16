@@ -17,10 +17,8 @@ abstract class Robot {
 
   // Ejecutar las acciones del robot
 
-  void ejecutarAcciones() {
-    for (var accion in acciones) {
-      print(accion);
-    }
+  List<String> ejecutarAcciones() {
+    return acciones;
   }
 
   //Método abstracto
