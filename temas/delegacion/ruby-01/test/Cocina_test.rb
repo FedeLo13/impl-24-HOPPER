@@ -8,10 +8,10 @@ class CocinaTest < Minitest::Test
     end
 
     def test_calentar
-        assert_output("Calentando pizza\n") { @cocina.calentar("pizza") }
+        assert_equal "Calentando pizza...", @cocina.calentar("pizza")
     end
 
     def test_cocinar
-        assert_output("Preparando ingredientes...\nCalentando pizza\nEl plato está listo\n") { @cocina.cocinar("pizza") }
+        assert_equal "Preparando ingredientes... Calentando pizza... El plato está listo.", @cocina.cocinar("pizza")
     end
 end

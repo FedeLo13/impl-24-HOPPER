@@ -19,9 +19,9 @@ class ClanTest < Minitest::Test
     end
 
     def test_usar_habilidad
-        assert_output(/Bruja Bruja 1 lanza una bola de fuego al enemigo/) { @tropa1.usar_habilidad }
-        assert_output(/Arquera Arquera 1 dispara una flecha envenenada al enemigo/) { @tropa2.usar_habilidad }
-        assert_output(/Gigante Gigante 1 golpea al enemigo/) { @tropa3.usar_habilidad }
+        assert_equal "Bruja Bruja 1 lanza una bola de fuego al enemigo",  @tropa1.usar_habilidad 
+        assert_equal "Arquera Arquera 1 dispara una flecha envenenada al enemigo",  @tropa2.usar_habilidad 
+        assert_equal "Gigante Gigante 1 golpea al enemigo con su maza", @tropa3.usar_habilidad
     end
 
     def test_add_tropa_ataque
@@ -51,7 +51,15 @@ class ClanTest < Minitest::Test
         @clan.add_tropa_ataque(@tropa2)
         @clan.add_tropa_ataque(@tropa3)
 
-        assert_output("Bruja Bruja 1 avanza y ataca al enemigo\nBruja Bruja 1 lanza una bola de fuego al enemigo\nArquera Arquera 1 avanza y ataca al enemigo\nArquera Arquera 1 dispara una flecha envenenada al enemigo\nGigante Gigante 1 avanza y ataca al enemigo\nGigante Gigante 1 golpea al enemigo con su maza\n") { @clan.atacar }
+        expected_output = [
+      "Bruja Bruja 1 avanza y ataca al enemigo",
+      "Bruja Bruja 1 lanza una bola de fuego al enemigo",
+      "Arquera Arquera 1 avanza y ataca al enemigo",
+      "Arquera Arquera 1 dispara una flecha envenenada al enemigo",
+      "Gigante Gigante 1 avanza y ataca al enemigo",
+      "Gigante Gigante 1 golpea al enemigo con su maza"
+    ]
+        assert_equal expected_output, @clan.atacar
     end
 
     def test_defender
@@ -59,6 +67,14 @@ class ClanTest < Minitest::Test
         @clan.add_tropa_defensa(@tropa5)
         @clan.add_tropa_defensa(@tropa6)
 
-        assert_output("Bruja Bruja 2 se retira a defender la base\nBruja Bruja 2 lanza una bola de fuego al enemigo\nArquera Arquera 2 se retira a defender la base\nArquera Arquera 2 dispara una flecha envenenada al enemigo\nGigante Gigante 2 se retira a defender la base\nGigante Gigante 2 golpea al enemigo con su maza\n") { @clan.defender }
+        expected_output = [
+      "Bruja Bruja 2 se retira a defender la base",
+      "Bruja Bruja 2 lanza una bola de fuego al enemigo",
+      "Arquera Arquera 2 se retira a defender la base",
+      "Arquera Arquera 2 dispara una flecha envenenada al enemigo",
+      "Gigante Gigante 2 se retira a defender la base",
+      "Gigante Gigante 2 golpea al enemigo con su maza"
+    ]
+        assert_equal expected_output, @clan.defender
     end
 end
