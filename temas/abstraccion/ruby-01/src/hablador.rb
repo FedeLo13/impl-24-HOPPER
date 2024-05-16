@@ -4,6 +4,6 @@ module Hablador
   end
 
   def saludar
-    puts "HOLA!"
+    "HOLA!"
   end
 end
