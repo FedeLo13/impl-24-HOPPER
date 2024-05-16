@@ -15,6 +15,6 @@ class TestHablador < Minitest::Test
   end
 
   def test_saludar
-    assert_output("HOLA!\n") { @instancia.saludar }
+    assert_equal "HOLA!", @instancia.saludar
   end
 end
