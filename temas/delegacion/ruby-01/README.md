@@ -11,117 +11,115 @@ Nos situamos en el archivo [Clan.rb](src/Clan.rb):
 ```ruby
 module Tropa
     def initialize(nombre)
-        @nombre = nombre 
+      @nombre = nombre 
     end
-
+  
     def atacar
-        puts "#{self.class} #{@nombre} avanza y ataca al enemigo"
+      "#{self.class} #{@nombre} avanza y ataca al enemigo"
     end
-
+  
     def defender
-        puts "#{self.class} #{@nombre} se retira a defender la base"
+      "#{self.class} #{@nombre} se retira a defender la base"
     end
-
+  
     def usar_habilidad
-        raise NotImplementedError 'Debe implementarse en una clase'
+      raise NotImplementedError, 'Debe implementarse en una clase'
     end
-end
-
-class Clan
+  end
+  
+  class Clan
     include Enumerable
   
     attr_accessor :tropas_ataque, :tropas_defensa
-
+  
     def initialize
-        @tropas_ataque = []
-        @tropas_defensa = []
+      @tropas_ataque = []
+      @tropas_defensa = []
     end
   
     # Métodos para agregar y remover tropas
     def add_tropa_ataque(tropa)
-        @tropas_ataque << tropa
+      @tropas_ataque << tropa
     end
   
     def add_tropa_defensa(tropa)
-        @tropas_defensa << tropa
+      @tropas_defensa << tropa
     end
   
     def remove_tropa_ataque(tropa)
-        @tropas_ataque.delete(tropa)
+      @tropas_ataque.delete(tropa)
     end
   
     def remove_tropa_defensa(tropa)
-        @tropas_defensa.delete(tropa)
+      @tropas_defensa.delete(tropa)
     end
   
     # Método para iterar sobre las tropas
     def each(&block)
-        @tropas_ataque.each(&block)
-        @tropas_defensa.each(&block)
+      @tropas_ataque.each(&block)
+      @tropas_defensa.each(&block)
     end
-
+  
     def atacar
-        @tropas_ataque.each do |tropa|
-            tropa.atacar
-            tropa.usar_habilidad
-        end
+      @tropas_ataque.map do |tropa|
+        [tropa.atacar, tropa.usar_habilidad]
+      end.flatten
     end
-
+  
     def defender
-        @tropas_defensa.each do |tropa|
-            tropa.defender
-            tropa.usar_habilidad
-        end
+      @tropas_defensa.map do |tropa|
+        [tropa.defender, tropa.usar_habilidad]
+      end.flatten
     end
-end
-
-class Bruja
+  end
+  
+  class Bruja
     include Tropa
     def initialize(nombre)
-        @nombre = nombre
+      @nombre = nombre
     end
-
+  
     # Implementación del método usar_habilidad del módulo Tropa
     def usar_habilidad
-        puts "#{self.class} #{@nombre} lanza una bola de fuego al enemigo"
+      "#{self.class} #{@nombre} lanza una bola de fuego al enemigo"
     end
-
+  
     def to_s
-        @nombre
+      @nombre
     end
-end
-
-class Arquera
+  end
+  
+  class Arquera
     include Tropa
     def initialize(nombre)
-        @nombre = nombre
+      @nombre = nombre
     end
-
+  
     # Implementación del método usar_habilidad del módulo Tropa
     def usar_habilidad
-        puts "#{self.class} #{@nombre} dispara una flecha envenenada al enemigo"
+      "#{self.class} #{@nombre} dispara una flecha envenenada al enemigo"
     end
-
+  
     def to_s
-        @nombre
+      @nombre
     end
-end
-
-class Gigante
+  end
+  
+  class Gigante
     include Tropa
     def initialize(nombre)
-        @nombre = nombre
+      @nombre = nombre
     end
-
+  
     # Implementación del método usar_habilidad del módulo Tropa
     def usar_habilidad
-        puts "#{self.class} #{@nombre} golpea al enemigo con su maza"
+      "#{self.class} #{@nombre} golpea al enemigo con su maza"
     end
-
+  
     def to_s
-        @nombre
+      @nombre
     end
-end
+  end
 ```
 
 En este ejemplo, se puede apreciar un uso MASIVO de la delegación, veámoslo en profundidad:
@@ -143,7 +141,7 @@ En este caso, le echaremos un vistazo al archivo [Cocina.rb](src/Cocina.rb)
 ```ruby
 class Horno
     def calentar(comida)
-        puts "Calentando #{comida}"
+        "Calentando #{comida}..."
     end
 end
 
@@ -155,9 +153,7 @@ class Cocina
     end
 
     def cocinar(comida)
-        puts "Preparando ingredientes..."
-        calentar(comida)
-        puts "El plato está listo"
+        "Preparando ingredientes... " + calentar(comida) + " El plato está listo."
     end
 end
 ```
