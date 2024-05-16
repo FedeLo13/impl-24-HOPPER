@@ -2,7 +2,7 @@ require 'active_support/core_ext/module/delegation'
 
 class Horno
     def calentar(comida)
-        puts "Calentando #{comida}"
+        "Calentando #{comida}..."
     end
 end
 
@@ -14,8 +14,6 @@ class Cocina
     end
 
     def cocinar(comida)
-        puts "Preparando ingredientes..."
-        calentar(comida)
-        puts "El plato está listo"
+        "Preparando ingredientes... " + calentar(comida) + " El plato está listo."
     end
 end
