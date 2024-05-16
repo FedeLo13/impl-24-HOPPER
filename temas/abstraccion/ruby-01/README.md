@@ -22,7 +22,7 @@ module Hablador
   end
 
   def saludar
-    puts "HOLA!"
+    "HOLA!"
   end
 end
 ```
@@ -37,44 +37,38 @@ He aquí nuestra clase [robot.rb](src/robot.rb)
 
 ```ruby
 class Robot
-    include Hablador
+  include Hablador
 
-    # Definición de los métodos de acceso a las variables de instancia (con uso de symbols)
-    attr_accessor :nombre, :num_laseres
-    attr_reader :material
+  attr_accessor :nombre, :num_laseres
+  attr_reader :material
 
-    # Constructor de la clase
-    def initialize(nombre, material, num_laseres)
-        @nombre = nombre
-        @material = material
-        @num_laseres = num_laseres
+  def initialize(nombre, material, num_laseres)
+    @nombre = nombre
+    @material = material
+    @num_laseres = num_laseres
+  end
+
+  def hablar
+    "HOLA. SOY. UN. ROBOT. MI. NOMBRE. ES. #{@nombre} Y. ESTOY. HECHO. DE. #{@material}."
+  end
+
+  def disparar_laser
+    if @num_laseres > 0
+      @num_laseres -= 1
+      "PEW! Ahora tengo #{@num_laseres} láseres restantes."
+    else
+      recargar_laseres
+      "NO. TENGO. MAS. LASERES. #{@recarga_mensaje}"
     end
+  end
 
-    # Definición del método hablar del mixin Hablador, accesible desde cualquier parte del código
-    def hablar
-        puts "HOLA. SOY. UN. ROBOT. MI. NOMBRE. ES. #{@nombre} Y. ESTOY. HECHO. DE. #{@material}."
-    end
+  private
 
-    # Método de instancia, accesible desde cualquier parte del código
-    def disparar_laser
-        if @num_laseres > 0
-            puts "PEW! "
-            @num_laseres -= 1
-        else
-            puts "NO. TENGO. MAS. LASERES."
-            recargar_laseres
-        end
-    end
-
-    private
-
-    # Método privado, solo accesible desde la clase
-    def recargar_laseres
-        puts "RECARGANDO. LASERES."
-        laseres = rand(1..10)
-        @num_laseres += laseres
-        puts "RECARGA. COMPLETA. AHORA. TENGO. #{@num_laseres} LASERES."
-    end
+  def recargar_laseres
+    laseres = rand(1..10)
+    @num_laseres += laseres
+    @recarga_mensaje = "RECARGANDO. LASERES. RECARGA. COMPLETA. AHORA. TENGO. #{@num_laseres} LASERES."
+  end
 end
 ```
 Como programador de esta clase, estoy asumiendo dos roles, por un lado, soy usuario de la clase `hablador`, eso me permite brindarle a mi robot la capacidad de `hablar` y `saludar`, la primera la implemento yo, haciendo que el robot diga su numbre y de que material está hecho, sin embargo el método saludar como comentamos anteriormente, viene implementado y yo no tengo por qué saber como, simplemente sé que cuando mande a mi robot a `saludar`, este lo hará perfectamente.
