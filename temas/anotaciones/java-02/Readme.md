@@ -170,14 +170,17 @@ mvn test
 
 ## Construir y desplegar
 ### Crear el paquete jar
+Dentro de `./java-02/logger/`
 ``` shell
 mvn package
 ```
 ### Crear la imagen de docker
+Dentro de `./java-02/`
 ```shell
 docker build -t logger_app . 
 ```
 ### Desplegar el contenedor con la aplicación
+Dentro de `./java-02/`
 ```shell
 terraform init
 terraform apply
@@ -186,6 +189,7 @@ Una vez se haya iniciado correctamente, la web estará dispoible en:
 `localhost:6060`
 
 ### Detener el contenedor
+Dentro de `./java-02/`
 ```shell
 terraform destroy
 ```
