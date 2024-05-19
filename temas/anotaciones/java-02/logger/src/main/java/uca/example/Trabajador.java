@@ -1,11 +1,11 @@
 package uca.example;
 
 public class Trabajador {
-    public Trabajador(String nombre, String ocupacion, String dni, String contraseña, double salario){
+    public Trabajador(String nombre, String ocupacion, String dni, String contrasena, double salario){
         this.nombre = nombre;
         this.ocupacion = ocupacion;
         this.dni = dni;
-        this.contrasena = contraseña;
+        this.contrasena = contrasena;
         this.salario = salario;
     }
 
