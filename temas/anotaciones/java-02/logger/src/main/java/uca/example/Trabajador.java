@@ -5,7 +5,7 @@ public class Trabajador {
         this.nombre = nombre;
         this.ocupacion = ocupacion;
         this.dni = dni;
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
         this.salario = salario;
     }
 
@@ -19,7 +19,7 @@ public class Trabajador {
     private String dni;
     
     @AdministradorAttribute
-    private String contraseña;
+    private String contrasena;
     
     @JefeAttribute
     private double salario;

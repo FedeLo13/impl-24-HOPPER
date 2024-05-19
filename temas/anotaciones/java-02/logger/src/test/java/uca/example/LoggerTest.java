@@ -33,21 +33,21 @@ class LoggerTest {
 
     @Test
     void testJefeLogger() throws IllegalArgumentException, IllegalAccessException {
-        String expected = "[Jefe] nombre: Juan, ocupacion: Programador, dni: 12345678A, contraseña: 1234, salario: 1000.0, ";
+        String expected = "[Jefe] nombre: Juan, ocupacion: Programador, dni: 12345678A, contrasena: 1234, salario: 1000.0, ";
         String actual = jefeLogger.log(trabajador);
         assertEquals(expected, actual);
     }
 
     @Test
     void testAdministradorLogger() throws IllegalArgumentException, IllegalAccessException {
-        String expected = "[Administrador] nombre: Juan, ocupacion: Programador, dni: 12345678A, contraseña: 1234, salario: *****, ";
+        String expected = "[Administrador] nombre: Juan, ocupacion: Programador, dni: 12345678A, contrasena: 1234, salario: *****, ";
         String actual = administradorLogger.log(trabajador);
         assertEquals(expected, actual);
     }
 
     @Test
     void testUsuarioLogger() throws IllegalArgumentException, IllegalAccessException {
-        String expected = "[Usuario] nombre: Juan, ocupacion: Programador, dni: *****, contraseña: *****, salario: *****, ";
+        String expected = "[Usuario] nombre: Juan, ocupacion: Programador, dni: *****, contrasena: *****, salario: *****, ";
         String actual = usuarioLogger.log(trabajador);
         assertEquals(expected, actual);
     }
